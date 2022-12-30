@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.mysdk">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <application>
+        <activity
+            android:name=".SecondSDkActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+<!--                https://clientabc.page.link/?link=your_deep_link&apn=package_name[&amv=minimum_version][&afl=fallback_link]-->
+<!--                https://clientabc.page.link/?link=https://client.com/31BABSEU3719DGABCIA3?id=12121&apn=com.example.abcd-->
+                <data
+                    android:scheme="http"
+                    android:host="client.com"
+                    android:pathPrefix="/${clientId}" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:scheme="https"
+                    android:host="client.com"
+                    android:pathPrefix="/${clientId}" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".SDKActivity"
+            android:exported="true" />
+
+        <service
+            android:name=".MYFCMSDKService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>
